@@ -4,6 +4,20 @@
     --accent-color: #ff7f50; /* Coral */
     --text-color: #333333;
     --shadow-color: rgba(0, 0, 0, 0.1);
+    --ball-text-color: #ffffff;
+}
+
+[data-theme="dark"] {
+    --background-color: #1a1a1a;
+    --main-color: #2d2d2d;
+    --accent-color: #ff9f75; /* Lighter Coral for contrast */
+    --text-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --ball-text-color: #ffffff;
+}
+
+* {
+    transition: background-color 0.3s, color 0.3s;
 }
 
 body {
@@ -13,7 +27,8 @@ body {
     height: 100vh;
     background-color: var(--background-color);
     font-family: 'Poppins', sans-serif;
-    background-image: url('https://www.transparenttextures.com/patterns/subtle-zebra-3d.png');
+    margin: 0;
+    overflow: hidden;
 }
 
 .lotto-machine {
@@ -21,9 +36,11 @@ body {
     background-color: var(--main-color);
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 10px 20px var(--shadow-color);
+    box-shadow: 0 10px 30px var(--shadow-color);
     width: 90%;
     max-width: 500px;
+    position: relative;
+    z-index: 1;
 }
 
 h1 {
@@ -38,6 +55,7 @@ h1 {
     gap: 15px;
     margin-bottom: 40px;
     flex-wrap: wrap;
+    min-height: 60px;
 }
 
 .number-ball {
@@ -47,11 +65,11 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--ball-text-color);
     font-size: 1.8rem;
     font-weight: bold;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 #generate-btn {
@@ -60,26 +78,60 @@ h1 {
     border: none;
     padding: 15px 30px;
     font-size: 1.2rem;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    font-weight: 600;
 }
 
 #generate-btn:hover {
-    background-color: #ff6347; /* Tomato */
-    box-shadow: 0 0 15px var(--accent-color), 0 0 30px var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--shadow-color);
+    filter: brightness(1.1);
+}
+
+#generate-btn:active {
+    transform: translateY(0);
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--main-color);
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg) scale(1.1);
 }
 
 /* Responsive Design */
 @media (max-width: 480px) {
     .number-ball {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+
+    .lotto-machine {
+        padding: 30px 20px;
     }
 }
