@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로또 번호 추첨기</title>
+    <title>인공지능 남녀 구분 테스트</title>
     <link rel="stylesheet" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4508680073216965"
      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
     <button id="theme-toggle" class="theme-toggle">🌓</button>
     <div class="main-container">
-        <div class="lotto-machine">
-            <h1>로또 번호 추첨기</h1>
-            <div class="numbers-display"></div>
-            <button id="generate-btn">번호 생성</button>
+        <div class="classification-container">
+            <h1>인공지능 남녀 구분 테스트</h1>
+            <div class="upload-area" id="upload-area">
+                <p>사진을 올리거나 드래그하세요</p>
+                <input type="file" id="image-upload" accept="image/*" hidden>
+                <button type="button" onclick="document.getElementById('image-upload').click()">파일 선택</button>
+            </div>
+            <div id="loading" style="display: none;">모델을 불러오는 중...</div>
+            <div class="preview-container">
+                <img id="image-preview" src="#" alt="Preview" style="display: none;">
+            </div>
+            <div id="label-container" class="result-container"></div>
         </div>
 
         <div id="disqus_thread"></div>

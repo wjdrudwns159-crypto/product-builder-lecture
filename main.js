@@ -1,45 +1,88 @@
-const generateBtn = document.getElementById('generate-btn');
-const numbersDisplay = document.querySelector('.numbers-display');
+const URL = "https://teachablemachine.withgoogle.com/models/bgz2a2k4V/";
+
+let model, labelContainer, maxPredictions;
+
+const imageUpload = document.getElementById('image-upload');
+const imagePreview = document.getElementById('image-preview');
+const loading = document.getElementById('loading');
+const uploadArea = document.getElementById('upload-area');
 const themeToggle = document.getElementById('theme-toggle');
 
-// Lotto Generation Logic
-function generateLottoNumbers() {
-    const numbers = new Set();
-    while (numbers.size < 6) {
-        const randomNumber = Math.floor(Math.random() * 45) + 1;
-        numbers.add(randomNumber);
+// Load the image model
+async function init() {
+    loading.style.display = 'block';
+    const modelURL = URL + "model.json";
+    const metadataURL = URL + "metadata.json";
+
+    model = await tmImage.load(modelURL, metadataURL);
+    maxPredictions = model.getTotalClasses();
+
+    labelContainer = document.getElementById("label-container");
+    for (let i = 0; i < maxPredictions; i++) {
+        const resultItem = document.createElement("div");
+        resultItem.classList.add("result-item");
+        resultItem.innerHTML = `
+            <div class="label-wrapper">
+                <span class="class-label"></span>
+                <span class="probability-label"></span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 0%"></div>
+            </div>
+        `;
+        labelContainer.appendChild(resultItem);
     }
-    return Array.from(numbers).sort((a, b) => a - b);
+    loading.style.display = 'none';
 }
 
-function getBallColor(number) {
-    if (number <= 10) return '#fbc400'; // Yellow
-    if (number <= 20) return '#69c8f2'; // Blue
-    if (number <= 30) return '#ff7272'; // Red
-    if (number <= 40) return '#aaa';    // Gray
-    return '#b0d840';      // Green
+async function predict() {
+    const prediction = await model.predict(imagePreview);
+    for (let i = 0; i < maxPredictions; i++) {
+        const classPrediction = prediction[i].className;
+        const probability = (prediction[i].probability * 100).toFixed(0);
+        
+        const item = labelContainer.childNodes[i];
+        item.querySelector('.class-label').innerText = classPrediction;
+        item.querySelector('.probability-label').innerText = probability + "%";
+        item.querySelector('.progress-bar-fill').style.width = probability + "%";
+    }
 }
 
-function displayNumbers(numbers) {
-    numbersDisplay.innerHTML = '';
-    numbers.forEach((number, index) => {
-        setTimeout(() => {
-            const ball = document.createElement('div');
-            ball.classList.add('number-ball');
-            ball.textContent = number;
-            ball.style.backgroundColor = getBallColor(number);
-            ball.style.transform = 'scale(0)';
-            numbersDisplay.appendChild(ball);
-            setTimeout(() => {
-                ball.style.transform = 'scale(1)';
-            }, 50); 
-        }, index * 200);
-    });
-}
+imageUpload.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+            imagePreview.src = event.target.result;
+            imagePreview.style.display = 'block';
+            if (!model) {
+                await init();
+            }
+            await predict();
+        };
+        reader.readAsDataURL(file);
+    }
+});
 
-generateBtn.addEventListener('click', () => {
-    const lottoNumbers = generateLottoNumbers();
-    displayNumbers(lottoNumbers);
+// Drag and Drop support
+uploadArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadArea.style.backgroundColor = 'rgba(76, 175, 80, 0.1)';
+});
+
+uploadArea.addEventListener('dragleave', () => {
+    uploadArea.style.backgroundColor = 'transparent';
+});
+
+uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadArea.style.backgroundColor = 'transparent';
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) {
+        imageUpload.files = e.dataTransfer.files;
+        const event = new Event('change');
+        imageUpload.dispatchEvent(event);
+    }
 });
 
 // Theme Toggle Logic
