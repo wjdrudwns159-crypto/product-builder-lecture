@@ -32,7 +32,7 @@ function displayNumbers(numbers) {
             numbersDisplay.appendChild(ball);
             setTimeout(() => {
                 ball.style.transform = 'scale(1)';
-            }, 50);
+            }, 50); 
         }, index * 200);
     });
 }
@@ -56,5 +56,10 @@ themeToggle.addEventListener('click', () => {
 });
 
 // Initialize Theme
-const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-setTheme(savedTheme);
+function initializeTheme() {
+    const savedTheme = localStorage.getItem('theme') || 
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    setTheme(savedTheme);
+}
+
+initializeTheme();
