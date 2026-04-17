@@ -1,41 +1,27 @@
-
-# Project Blueprint: Lotto Number Generator
+# Project Blueprint: Doljanchi (1st Birthday) Invitation
 
 ## Overview
-
-This document outlines the plan for creating a Lotto Number Generator website. The website will be a single-page application that generates and displays a set of 6 random lottery numbers. It will be built using modern HTML, CSS, and JavaScript for a clean and interactive user experience.
-
-## Current Plan
-
-### Phase 1: Basic Lotto Generator
-
-1.  **Create the HTML structure (`index.html`):**
-    *   Set up a clear and concise title for the page.
-    *   Add a main container for the application.
-    *   Include a button to trigger the lottery number generation.
-    *   Create a dedicated section to display the generated numbers.
-
-2.  **Apply modern and bold styling (`style.css`):**
-    *   Choose a vibrant and energetic color palette.
-    *   Use a clean and readable font.
-    *   Style the number display to be prominent and easy to read, with each number in its own styled circle.
-    *   Make the layout responsive to work well on both mobile and desktop devices.
-    *   Add a subtle background texture and "glow" effects to the button and number display for a premium feel.
-
-3.  **Add interactivity with JavaScript (`main.js`):**
-    *   Add an event listener to the "Generate" button.
-    *   Implement a function that generates 6 unique random numbers between 1 and 45.
-    *   Create a function to dynamically display the generated numbers on the page with animations.
+A modern, mobile-first web invitation for a child's 1st birthday party (Doljanchi). The design is inspired by the SceneKoong 'yellow' theme, featuring a soft and cheerful aesthetic.
 
 ## Implemented Features
 
-*This section will be updated as features are implemented.*
+### Design & Style
+- **Theme:** Warm Yellow (`#FFFBEB`, `#FBBF24`).
+- **Typography:** Noto Sans KR for body, Playfair Display for headings.
+- **Layout:** Mobile-app feel with a centered wrapper (max-width 480px).
+- **Animations:** Intersection Observer based fade-in effects on scroll.
 
-### Design and Style
-*   **Color Palette:** TBD
-*   **Fonts:** TBD
-*   **Layout:** Single-page, responsive.
+### Key Sections
+- **Hero:** Impactful baby photo with a arched border-radius and large name display.
+- **Intro:** Warm message with parents' names.
+- **D-Day:** Real-time countdown to the party date (2026.05.24).
+- **Gallery:** 6-photo grid with rounded corners and shadows.
+- **Location:** Venue details with direct links to Naver and Kakao Maps.
+- **Contact:** One-touch call and message buttons for both parents.
+- **Account:** Collapsible section for bank account information with a 'Copy' function.
+- **Guestbook:** Integrated Disqus thread for well-wishes.
 
-### Features
-*   **Lotto Number Generation:** Generates 6 unique random numbers.
-*   **Interactive Display:** Shows the numbers in a visually appealing way.
+## Technical Details
+- **Frontend:** HTML5, CSS3 (Flexbox/Grid), Vanilla JavaScript.
+- **Assets:** Font Awesome icons, Google Fonts.
+- **Responsiveness:** Fully responsive, optimized for KakaoTalk and mobile browsers.

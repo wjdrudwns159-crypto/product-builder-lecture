@@ -3,50 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>인공지능 남녀 구분 테스트</title>
+    <title>지민이의 첫 번째 생일파티에 초대합니다</title>
+    <!-- Open Graph for Kakao Sharing -->
+    <meta property="og:title" content="지민이의 첫 번째 생일파티">
+    <meta property="og:description" content="2026.05.24 일요일 오후 12시, 지민이의 돌잔치에 초대합니다.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1519689689253-cf9b12415d01?q=80&w=600&auto=format&fit=crop">
+    
     <link rel="stylesheet" href="style.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4508680073216965"
-     crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <button id="theme-toggle" class="theme-toggle">🌓</button>
-    <div class="main-container">
-        <div class="classification-container">
-            <h1>인공지능 남녀 구분 테스트</h1>
-            <div class="upload-area" id="upload-area">
-                <p>사진을 올리거나 드래그하세요</p>
-                <input type="file" id="image-upload" accept="image/*" hidden>
-                <button type="button" onclick="document.getElementById('image-upload').click()">파일 선택</button>
+    <div class="invitation-wrapper">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <p class="subtitle">THE 1ST BIRTHDAY</p>
+                <h1 class="baby-name">지민</h1>
+                <p class="hero-date">2026.05.24 SUN 12:00 PM</p>
             </div>
-            <div id="loading" style="display: none;">모델을 불러오는 중...</div>
-            <div class="preview-container">
-                <img id="image-preview" src="#" alt="Preview" style="display: none;">
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1519689689253-cf9b12415d01?q=80&w=600&auto=format&fit=crop" alt="Baby Image">
             </div>
-            <div id="label-container" class="result-container"></div>
-        </div>
+        </section>
 
-        <div id="disqus_thread"></div>
-        <script>
-            /**
-            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-            /*
-            var disqus_config = function () {
-            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-            */
-            (function() { // DON'T EDIT BELOW THIS LINE
+        <!-- Intro Section -->
+        <section class="intro-section">
+            <div class="ornament">✨</div>
+            <h2>소중한 아이의<br>첫 번째 생일입니다</h2>
+            <p class="intro-text">
+                어느덧 지민이가 세상에 온 지<br>
+                일 년이라는 시간이 흘렀습니다.<br><br>
+                밝고 건강하게 자라준 지민이의<br>
+                첫 번째 생일날,<br>
+                따뜻한 사랑으로 함께 축하해 주세요.
+            </p>
+            <div class="parents-info">
+                <span>아빠 <b>김철수</b> · 엄마 <b>이영희</b></span>
+            </div>
+        </section>
+
+        <!-- D-Day Counter Section -->
+        <section class="dday-section">
+            <div class="dday-card">
+                <p class="dday-label">지민이의 생일까지</p>
+                <div id="dday-timer" class="dday-timer">
+                    D-00
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+            <h3 class="section-title">Photo Gallery</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1502086223501-7ea244b05ff1?q=80&w=300&auto=format&fit=crop" alt="Baby 1"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1537673156864-5d2c82633399?q=80&w=300&auto=format&fit=crop" alt="Baby 2"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=300&auto=format&fit=crop" alt="Baby 3"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1544126592-807daf21565c?q=80&w=300&auto=format&fit=crop" alt="Baby 4"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1510154221590-ff63e90a136f?q=80&w=300&auto=format&fit=crop" alt="Baby 5"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?q=80&w=300&auto=format&fit=crop" alt="Baby 6"></div>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section class="location-section">
+            <h3 class="section-title">Location</h3>
+            <div class="location-info">
+                <p class="venue">더 파티 서면점 3층</p>
+                <p class="address">부산광역시 부산진구 중앙대로 666번길 50</p>
+                <div class="map-buttons">
+                    <a href="https://map.naver.com/" target="_blank" class="map-btn naver">네이버 지도</a>
+                    <a href="https://map.kakao.com/" target="_blank" class="map-btn kakao">카카오 맵</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="contact-box">
+                <div class="contact-item">
+                    <p>아빠에게 연락하기</p>
+                    <div class="btn-group">
+                        <a href="tel:01000000000"><i class="fa-solid fa-phone"></i></a>
+                        <a href="sms:01000000000"><i class="fa-solid fa-comment"></i></a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <p>엄마에게 연락하기</p>
+                    <div class="btn-group">
+                        <a href="tel:01000000000"><i class="fa-solid fa-phone"></i></a>
+                        <a href="sms:01000000000"><i class="fa-solid fa-comment"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Account Section (Optional) -->
+        <section class="account-section">
+            <button class="account-toggle-btn" onclick="toggleAccount()">마음 전하실 곳 보기</button>
+            <div id="account-info" class="account-details" style="display: none;">
+                <div class="account-item">
+                    <p>아빠 (김철수)</p>
+                    <p class="bank-info">신한은행 110-123-456789 <span class="copy-btn" onclick="copyText('110-123-456789')">복사</span></p>
+                </div>
+                <div class="account-item">
+                    <p>엄마 (이영희)</p>
+                    <p class="bank-info">국민은행 123456-01-123456 <span class="copy-btn" onclick="copyText('123456-01-123456')">복사</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guestbook Section -->
+        <section class="guestbook-section">
+            <h3 class="section-title">Guestbook</h3>
+            <div id="disqus_thread"></div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 Jimin's 1st Birthday</p>
+        </footer>
+    </div>
+
+    <button id="go-top-btn" class="go-top-btn" onclick="scrollToTop()">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Disqus config
+        var disqus_config = function () {
+            this.page.url = window.location.href;
+            this.page.identifier = 'doljanchi-invitation-jimin';
+        };
+        (function() {
             var d = document, s = d.createElement('script');
             s.src = 'https://https-product-builder-lecture-29k-pages-dev.disqus.com/embed.js';
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
+        })();
+    </script>
     <script src="main.js"></script>
 </body>
 </html>

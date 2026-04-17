@@ -1,146 +1,327 @@
-:root {
-    --background-color: #f0f0f0;
-    --text-color: #333;
-    --container-bg: #fff;
-    --button-bg: #4CAF50;
-    --button-text-color: white;
-    --accent-color: #4CAF50;
-    --progress-bg: #e0e0e0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
-[data-theme="dark"] {
-    --background-color: #1a1a1a;
-    --text-color: #f0f0f0;
-    --container-bg: #2d2d2d;
-    --button-bg: #5cb85c;
-    --button-text-color: white;
-    --accent-color: #5cb85c;
-    --progress-bg: #444;
+:root {
+    --bg-color: #FFFBEB;
+    --primary-color: #FBBF24;
+    --secondary-color: #FEF3C7;
+    --text-color: #374151;
+    --light-text: #6B7280;
+    --white: #FFFFFF;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 body {
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     margin: 0;
-    background-color: var(--background-color);
+    padding: 0;
+    background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
-    box-sizing: border-box;
+    line-height: 1.6;
+    word-break: keep-all;
 }
 
-.main-container {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
+.invitation-wrapper {
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: var(--white);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
 }
 
-.theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--text-color);
-    z-index: 100;
-}
-
-.classification-container {
-    background-color: var(--container-bg);
-    padding: 40px 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+section {
+    padding: 60px 20px;
     text-align: center;
-    transition: background-color 0.3s;
 }
 
-h1 {
-    margin-top: 0;
-    margin-bottom: 30px;
+.section-title {
+    font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
-}
-
-.upload-area {
-    border: 2px dashed var(--accent-color);
-    border-radius: 15px;
-    padding: 40px 20px;
-    cursor: pointer;
+    color: var(--primary-color);
     margin-bottom: 30px;
-    transition: background-color 0.2s;
+    letter-spacing: 2px;
 }
 
-.upload-area:hover {
-    background-color: rgba(76, 175, 80, 0.05);
-}
-
-.upload-area p {
-    margin: 0 0 15px 0;
-    font-size: 1.1rem;
-}
-
-.upload-area button {
-    background-color: var(--button-bg);
-    color: var(--button-text-color);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.preview-container {
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: center;
-}
-
-#image-preview {
-    max-width: 100%;
-    max-height: 300px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.result-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.result-item {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.label-wrapper {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-}
-
-.progress-bar-bg {
-    background-color: var(--progress-bg);
-    height: 20px;
-    border-radius: 10px;
+/* Hero Section */
+.hero-section {
+    padding: 0;
+    position: relative;
+    background: linear-gradient(180deg, var(--secondary-color) 0%, var(--bg-color) 100%);
     overflow: hidden;
 }
 
-.progress-bar-fill {
-    height: 100%;
-    background-color: var(--accent-color);
-    transition: width 0.5s ease-out;
+.hero-content {
+    padding: 80px 20px 60px;
+    z-index: 1;
+    position: relative;
 }
 
-#loading {
+.subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    text-transform: uppercase;
+}
+
+.baby-name {
+    font-size: 4rem;
+    margin: 10px 0;
+    font-weight: 700;
+    color: var(--text-color);
+    text-shadow: 2px 2px 0px var(--white);
+}
+
+.hero-date {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: var(--light-text);
+    font-weight: 300;
+}
+
+.hero-image {
+    padding: 0 20px 40px;
+}
+
+.hero-image img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 1/1.2;
+    object-fit: cover;
+    border-radius: 100px 100px 20px 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Go Top Button */
+.go-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+
+.go-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Intro Section */
+.intro-section h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+.intro-text {
+    font-size: 1rem;
+    color: var(--light-text);
+    margin-bottom: 40px;
+}
+
+.ornament {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.parents-info {
+    font-size: 1.1rem;
+    border-top: 1px solid var(--secondary-color);
+    padding-top: 20px;
+}
+
+/* D-Day Section */
+.dday-section {
+    background-color: var(--bg-color);
+}
+
+.dday-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.dday-label {
+    font-size: 0.9rem;
+    color: var(--light-text);
+    margin-bottom: 10px;
+}
+
+.dday-timer {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* Gallery Section */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.gallery-item img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+/* Location Section */
+.location-info .venue {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.location-info .address {
+    font-size: 0.95rem;
+    color: var(--light-text);
+    margin-bottom: 30px;
+}
+
+.map-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.map-btn {
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.map-btn.naver { background-color: #03C75A; color: white; }
+.map-btn.kakao { background-color: #FEE500; color: #3C1E1E; }
+
+.map-btn:hover { opacity: 0.8; }
+
+/* Contact Section */
+.contact-box {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.contact-item {
     margin-bottom: 20px;
-    font-weight: bold;
-    color: var(--accent-color);
+}
+
+.contact-item:last-child { margin-bottom: 0; }
+
+.contact-item p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.btn-group a {
+    width: 50px;
+    height: 50px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    text-decoration: none;
+    box-shadow: var(--shadow);
+}
+
+/* Account Section */
+.account-toggle-btn {
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 10px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.account-toggle-btn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.account-details {
+    margin-top: 30px;
+    text-align: left;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.account-item {
+    margin-bottom: 15px;
+}
+
+.account-item:last-child { margin-bottom: 0; }
+
+.bank-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+.copy-btn {
+    font-size: 0.8rem;
+    background: #eee;
+    padding: 2px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Guestbook Section */
+#disqus_thread {
+    padding: 0 10px;
+}
+
+/* Footer */
+.footer {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* Transitions */
+section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }

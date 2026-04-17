@@ -1,108 +1,107 @@
-const URL = "https://teachablemachine.withgoogle.com/models/bgz2a2k4V/";
+// Party Date
+const PARTY_DATE = new Date("2026-05-24T12:00:00").getTime();
 
-let model, labelContainer, maxPredictions;
+// D-Day Counter
+function updateDDay() {
+    const now = new Date().getTime();
+    const distance = PARTY_DATE - now;
+    const ddayDisplay = document.getElementById("dday-timer");
 
-const imageUpload = document.getElementById('image-upload');
-const imagePreview = document.getElementById('image-preview');
-const loading = document.getElementById('loading');
-const uploadArea = document.getElementById('upload-area');
-const themeToggle = document.getElementById('theme-toggle');
-
-// Load the image model
-async function init() {
-    loading.style.display = 'block';
-    const modelURL = URL + "model.json";
-    const metadataURL = URL + "metadata.json";
-
-    model = await tmImage.load(modelURL, metadataURL);
-    maxPredictions = model.getTotalClasses();
-
-    labelContainer = document.getElementById("label-container");
-    for (let i = 0; i < maxPredictions; i++) {
-        const resultItem = document.createElement("div");
-        resultItem.classList.add("result-item");
-        resultItem.innerHTML = `
-            <div class="label-wrapper">
-                <span class="class-label"></span>
-                <span class="probability-label"></span>
-            </div>
-            <div class="progress-bar-bg">
-                <div class="progress-bar-fill" style="width: 0%"></div>
-            </div>
-        `;
-        labelContainer.appendChild(resultItem);
+    if (distance < 0) {
+        if (ddayDisplay) ddayDisplay.innerText = "D-DAY";
+        return;
     }
-    loading.style.display = 'none';
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    if (ddayDisplay) ddayDisplay.innerText = `D-${days}`;
 }
 
-async function predict() {
-    const prediction = await model.predict(imagePreview);
-    for (let i = 0; i < maxPredictions; i++) {
-        const classPrediction = prediction[i].className;
-        const probability = (prediction[i].probability * 100).toFixed(0);
-        
-        const item = labelContainer.childNodes[i];
-        item.querySelector('.class-label').innerText = classPrediction;
-        item.querySelector('.probability-label').innerText = probability + "%";
-        item.querySelector('.progress-bar-fill').style.width = probability + "%";
+// Scroll Animation Observer
+const observerOptions = {
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+// Account Toggle (Global)
+window.toggleAccount = function() {
+    const accountInfo = document.getElementById("account-info");
+    const btn = document.querySelector(".account-toggle-btn");
+    
+    if (accountInfo.style.display === "none") {
+        accountInfo.style.display = "block";
+        btn.innerText = "계좌정보 닫기";
+    } else {
+        accountInfo.style.display = "none";
+        btn.innerText = "마음 전하실 곳 보기";
     }
+};
+
+// Copy to Clipboard (Global with Fallback)
+window.copyText = function(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("계좌번호가 복사되었습니다.");
+        }).catch(() => {
+            fallbackCopyText(text);
+        });
+    } else {
+        fallbackCopyText(text);
+    }
+};
+
+function fallbackCopyText(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";  // Avoid scrolling to bottom
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+        document.execCommand('copy');
+        alert("계좌번호가 복사되었습니다.");
+    } catch (err) {
+        alert("복사에 실패했습니다. 직접 입력해 주세요.");
+    }
+    document.body.removeChild(textArea);
 }
 
-imageUpload.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = async (event) => {
-            imagePreview.src = event.target.result;
-            imagePreview.style.display = 'block';
-            if (!model) {
-                await init();
-            }
-            await predict();
-        };
-        reader.readAsDataURL(file);
+// Scroll to Top (Global)
+window.scrollToTop = function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
+
+// Scroll Events
+window.addEventListener('scroll', () => {
+    const goTopBtn = document.getElementById('go-top-btn');
+    if (goTopBtn) {
+        if (window.scrollY > 500) {
+            goTopBtn.classList.add('visible');
+        } else {
+            goTopBtn.classList.remove('visible');
+        }
     }
 });
 
-// Drag and Drop support
-uploadArea.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    uploadArea.style.backgroundColor = 'rgba(76, 175, 80, 0.1)';
+// Initialize
+document.addEventListener("DOMContentLoaded", () => {
+    updateDDay();
+
+    // Observe all sections for animation
+    document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+    });
+
+    // Make hero section visible immediately
+    const hero = document.querySelector('.hero-section');
+    if (hero) hero.classList.add('visible');
 });
-
-uploadArea.addEventListener('dragleave', () => {
-    uploadArea.style.backgroundColor = 'transparent';
-});
-
-uploadArea.addEventListener('drop', (e) => {
-    e.preventDefault();
-    uploadArea.style.backgroundColor = 'transparent';
-    const file = e.dataTransfer.files[0];
-    if (file && file.type.startsWith('image/')) {
-        imageUpload.files = e.dataTransfer.files;
-        const event = new Event('change');
-        imageUpload.dispatchEvent(event);
-    }
-});
-
-// Theme Toggle Logic
-function setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    themeToggle.textContent = theme === 'dark' ? '☀️' : '🌓';
-}
-
-themeToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-});
-
-// Initialize Theme
-function initializeTheme() {
-    const savedTheme = localStorage.getItem('theme') || 
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    setTheme(savedTheme);
-}
-
-initializeTheme();
