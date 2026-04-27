@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>지민이의 첫 번째 생일파티에 초대합니다</title>
+    <title>정예성의 첫 번째 생일파티에 초대합니다</title>
     <!-- Open Graph for Kakao Sharing -->
-    <meta property="og:title" content="지민이의 첫 번째 생일파티">
-    <meta property="og:description" content="2026.05.24 일요일 오후 12시, 지민이의 돌잔치에 초대합니다.">
+    <meta property="og:title" content="정예성의 첫 번째 생일파티">
+    <meta property="og:description" content="2026.05.16 토요일 오후 2시, 정예성의 돌잔치에 초대합니다.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1519689689253-cf9b12415d01?q=80&w=600&auto=format&fit=crop">
     
     <link rel="stylesheet" href="style.css">
@@ -14,12 +14,20 @@
 </head>
 <body>
     <div class="invitation-wrapper">
+        <!-- Hidden Image Input -->
+        <input type="file" id="image-upload-input" accept="image/*" style="display: none;">
+
+        <!-- Edit Mode Button -->
+        <button id="edit-mode-btn" class="edit-mode-btn" onclick="toggleEditMode()">
+            <i class="fa-solid fa-pen-to-square"></i> 편집 모드
+        </button>
+
         <!-- Hero Section -->
         <section class="hero-section">
             <div class="hero-content">
                 <p class="subtitle">THE 1ST BIRTHDAY</p>
-                <h1 class="baby-name">지민</h1>
-                <p class="hero-date">2026.05.24 SUN 12:00 PM</p>
+                <h1 class="baby-name">정예성</h1>
+                <p class="hero-date">2026.05.16 SAT 02:00 PM</p>
             </div>
             <div class="hero-image">
                 <img src="https://images.unsplash.com/photo-1519689689253-cf9b12415d01?q=80&w=600&auto=format&fit=crop" alt="Baby Image">
@@ -31,9 +39,9 @@
             <div class="ornament">✨</div>
             <h2>소중한 아이의<br>첫 번째 생일입니다</h2>
             <p class="intro-text">
-                어느덧 지민이가 세상에 온 지<br>
+                어느덧 예성이가 세상에 온 지<br>
                 일 년이라는 시간이 흘렀습니다.<br><br>
-                밝고 건강하게 자라준 지민이의<br>
+                밝고 건강하게 자라준 예성이의<br>
                 첫 번째 생일날,<br>
                 따뜻한 사랑으로 함께 축하해 주세요.
             </p>
@@ -45,7 +53,7 @@
         <!-- D-Day Counter Section -->
         <section class="dday-section">
             <div class="dday-card">
-                <p class="dday-label">지민이의 생일까지</p>
+                <p class="dday-label">정예성의 생일까지</p>
                 <div id="dday-timer" class="dday-timer">
                     D-00
                 </div>
@@ -120,7 +128,7 @@
         </section>
 
         <footer class="footer">
-            <p>© 2026 Jimin's 1st Birthday</p>
+            <p>© 2026 정예성의 첫 번째 생일</p>
         </footer>
     </div>
 
@@ -132,7 +140,7 @@
         // Disqus config
         var disqus_config = function () {
             this.page.url = window.location.href;
-            this.page.identifier = 'doljanchi-invitation-jimin';
+            this.page.identifier = 'doljanchi-invitation-yesung';
         };
         (function() {
             var d = document, s = d.createElement('script');

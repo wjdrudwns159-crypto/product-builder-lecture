@@ -14,7 +14,7 @@ A modern, mobile-first web invitation for a child's 1st birthday party (Doljanch
 ### Key Sections
 - **Hero:** Impactful baby photo with a arched border-radius and large name display.
 - **Intro:** Warm message with parents' names.
-- **D-Day:** Real-time countdown to the party date (2026.05.24).
+- **D-Day:** Real-time countdown to the party date (2026.05.16).
 - **Gallery:** 6-photo grid with rounded corners and shadows.
 - **Location:** Venue details with direct links to Naver and Kakao Maps.
 - **Contact:** One-touch call and message buttons for both parents.
