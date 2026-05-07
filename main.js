@@ -32,6 +32,9 @@ window.toggleEditMode = function() {
             el.contentEditable = "false";
         });
 
+        // Update Map Links based on edited address
+        updateMapLinks();
+
         // Remove Image Click Handlers
         images.forEach(img => {
             img.removeEventListener("click", handleImageClick);
@@ -39,9 +42,25 @@ window.toggleEditMode = function() {
 
         btn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> 편집 모드';
         btn.classList.remove("active");
-        alert("편집이 완료되었습니다.");
+        alert("편집이 완료되었습니다. 수정된 주소로 지도 링크가 업데이트되었습니다.");
     }
 };
+
+function updateMapLinks() {
+    const addressEl = document.querySelector('.address');
+    if (!addressEl) return;
+    
+    const address = addressEl.innerText.trim();
+    const naverBtn = document.querySelector('.map-btn.naver');
+    const kakaoBtn = document.querySelector('.map-btn.kakao');
+    
+    if (naverBtn) {
+        naverBtn.href = `https://map.naver.com/v5/search/${encodeURIComponent(address)}`;
+    }
+    if (kakaoBtn) {
+        kakaoBtn.href = `https://map.kakao.com/link/search/${encodeURIComponent(address)}`;
+    }
+}
 
 function handleImageClick(e) {
     if (!isEditMode) return;
